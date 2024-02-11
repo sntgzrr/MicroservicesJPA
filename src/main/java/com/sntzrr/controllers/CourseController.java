@@ -19,13 +19,19 @@ public class CourseController {
 
     @PostMapping
     public Course createTeacher (@Validated @RequestBody Course course){
-        return this.courseService.saveTeacher(course);
+        return this.courseService.saveCourse(course);
     }
 
     @GetMapping
     public List<Course> getCourses(){
         return this.courseService.findCourses();
     }
+
+    @PutMapping("/{id}")
+    public Course updateCourse (@PathVariable String id, @Validated @RequestBody Course course){
+        return this.courseService.saveCourse(course);
+    }
+
 
     @DeleteMapping("/{id}")
     public void deletePerson(@PathVariable Long id){

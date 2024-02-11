@@ -1,5 +1,8 @@
 package com.sntzrr.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,6 +47,11 @@ public class Course implements Serializable {
     @Column(name = "ending_date", nullable = false)
     private LocalDate ending_date;
 
+    @JsonIdentityInfo( //Ref.Bidireccional, logra crear un solo identificador.
+            generator = ObjectIdGenerators.PropertyGenerator.class, //Genera una clase.
+            property = "id" //Valor que me taerá de Course.
+    )
+    @JsonIdentityReference(alwaysAsId = true) //Para todos los objetos.
     @ManyToMany(mappedBy = "enrolled_courses", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Student> enrolled_students;
 }

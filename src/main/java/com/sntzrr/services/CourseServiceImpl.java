@@ -15,7 +15,7 @@ public class CourseServiceImpl {
     @Autowired
     private final ICourseRepository iCourseRepository;
 
-    public Course saveTeacher (Course course){
+    public Course saveCourse (Course course){
         return this.iCourseRepository.save(course);
     }
 
